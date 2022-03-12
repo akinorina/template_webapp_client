@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 // pages
 import Index from '../views/Index.vue'
+import NotFound from '../views/NotFound.vue'
 
 // Samples
 import SamplesIndex from '../views/Samples/Index.vue'
@@ -30,6 +31,11 @@ const router = createRouter({
       path: '/samples/page002',
       name: 'samples-page002',
       component: SamplesPage002
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not_found',
+      component: NotFound
     }
   ]
 })
