@@ -8,23 +8,23 @@ import { RouterLink } from 'vue-router'
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
           <h1 class="fw-light">template_webapp_client</h1>
-          <p class="lead text-muted">index</p>
+          <p class="lead text-muted">samples/page001</p>
         </div>
       </div>
     </section>
+
     <nav class="container">
-    <!--
-      <router-link :to="{ name: 'admin-index' }">admin/index</router-link>
-    -->
       <router-link :to="{ name: 'index' }">index</router-link>
       <router-link :to="{ name: 'samples-index' }">samples/index</router-link>
       <router-link :to="{ name: 'samples-page001' }">samples/page001</router-link>
       <router-link :to="{ name: 'samples-page002' }">samples/page002</router-link>
     </nav>
+
   </div>
 </template>
 
 <style lang="scss" scoped>
+
 nav {
   a {
     border-left: 1px #e0e0e0 solid;
@@ -35,4 +35,5 @@ nav {
     padding: 0 10px;
   }
 }
+
 </style>>
