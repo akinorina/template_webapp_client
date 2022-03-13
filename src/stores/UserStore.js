@@ -98,6 +98,28 @@ export const useUserStore = defineStore({
       }
     },
 
+    // [auth]: regist User.
+    async accessRegistUser (payload) {
+      // User登録データ生成
+      const url = '/api/auth/regist'
+      const userData = {
+        name: payload.name,
+        nameKana: payload.nameKana,
+        email: payload.email,
+        password: payload.password,
+        userType: payload.userType
+      }
+      const config = {}
+
+      // api access
+      await axiosC.post(url, userData, config).then((response) => {
+        // setUserId
+        this.userId = response.data.data.id
+      }).catch((e) => {
+        throw e
+      })
+    },
+
     // [users]: create User.
     async accessCreateUser (payload) {
       //

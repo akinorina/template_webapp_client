@@ -7,11 +7,11 @@ import { useUserStore } from "@/stores/UserStore";
 import Breadcrumb from '@/components/Breadcrumb.vue'
 
 // store
-const userStore = useUserStore();
+const userStore = useUserStore()
 
 // router & route
-const router = useRouter();
-const route = useRoute();
+const router = useRouter()
+const route = useRoute()
 
 // パン屑リスト
 const breadcrumbData = [
