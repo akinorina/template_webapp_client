@@ -1,5 +1,5 @@
 <script setup>
-import { RouterLink } from 'vue-router'
+import { RouterLink } from "vue-router";
 </script>
 
 <template>
@@ -14,6 +14,29 @@ import { RouterLink } from 'vue-router'
     </section>
 
     <div class="container">
+      <div class="cardlist">
+        <div class="card">
+          <div
+            class="card-body"
+            @click="$router.push({ name: 'managements-users-index' })"
+          >
+            <h5 class="card-title">ユーザー管理</h5>
+            <h6 class="card-subtitle mb-2 text-muted">User</h6>
+          </div>
+        </div>
+
+<!--
+        <div class="card">
+          <div
+            class="card-body"
+            @click="$router.push({ name: 'admin-images-index' })"
+          >
+            <h5 class="card-title">画像管理</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Image</h6>
+          </div>
+        </div>
+-->
+      </div>
     </div>
 
     <div class="container">
@@ -23,4 +46,17 @@ import { RouterLink } from 'vue-router'
 </template>
 
 <style lang="scss" scoped>
-</style>>
+
+.cardlist {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.card {
+  margin: 10px;
+  width: 200px;
+  cursor: pointer;
+}
+
+</style>

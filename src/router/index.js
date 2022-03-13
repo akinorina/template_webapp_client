@@ -14,6 +14,12 @@ import AuthLogout from '../views/auth/Logout.vue'
 // Managements
 import ManagementsIndex from '../views/managements/Index.vue'
 
+// Managements - Users
+import ManagementsUsersIndex from '../views/managements/users/Index.vue'
+import ManagementsUsersDetail from '../views/managements/users/Detail.vue'
+import ManagementsUsersNew from '../views/managements/users/New.vue'
+import ManagementsUsersEdit from '../views/managements/users/Edit.vue'
+
 // Samples
 import SamplesIndex from '../views/Samples/Index.vue'
 import SamplesPage001 from '../views/Samples/Page001.vue'
@@ -70,6 +76,28 @@ const router = createRouter({
       path: '/managements',
       name: 'managements-index',
       component: ManagementsIndex
+    },
+
+    // managements - users
+    {
+      path: '/managements/users',
+      name: 'managements-users-index',
+      component: ManagementsUsersIndex
+    },
+    {
+      path: '/managements/users/new',
+      name: 'managements-users-new',
+      component: ManagementsUsersNew
+    },
+    {
+      path: '/managements/users/:id/detail',
+      name: 'managements-users-detail',
+      component: ManagementsUsersDetail
+    },
+    {
+      path: '/managements/users/:id/edit',
+      name: 'managements-users-edit',
+      component: ManagementsUsersEdit
     },
 
     {
