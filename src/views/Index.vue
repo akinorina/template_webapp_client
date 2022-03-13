@@ -13,9 +13,7 @@ import { RouterLink } from 'vue-router'
       </div>
     </section>
     <nav class="container">
-    <!--
-      <router-link :to="{ name: 'admin-index' }">admin/index</router-link>
-    -->
+      <router-link :to="{ name: 'managements-index' }">maangements/index</router-link>
       <router-link :to="{ name: 'index' }">index</router-link>
       <router-link :to="{ name: 'samples-index' }">samples/index</router-link>
       <router-link :to="{ name: 'samples-page001' }">samples/page001</router-link>
