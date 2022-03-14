@@ -58,8 +58,8 @@ const newUser = () => {
         </div>
         <div class="col text-end">
           <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary" @click="accessGetUserListPrev">prev</button>
-            <button type="button" class="btn btn-primary" @click="accessGetUserListNext">next</button>
+            <button type="button" class="btn btn-primary" @click="userStore.accessGetUserListPrev">prev</button>
+            <button type="button" class="btn btn-primary" @click="userStore.accessGetUserListNext">next</button>
           </div>
         </div>
       </div>
