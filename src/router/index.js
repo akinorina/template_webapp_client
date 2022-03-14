@@ -20,6 +20,12 @@ import ManagementsUsersDetail from '../views/managements/users/Detail.vue'
 import ManagementsUsersNew from '../views/managements/users/New.vue'
 import ManagementsUsersEdit from '../views/managements/users/Edit.vue'
 
+// Managements - Images
+import ManagementsImagesIndex from '../views/managements/images/Index.vue'
+import ManagementsImagesNew from '../views/managements/images/New.vue'
+import ManagementsImagesDetail from '../views/managements/images/Detail.vue'
+import ManagementsImagesEdit from '../views/managements/images/Edit.vue'
+
 // Samples
 import SamplesIndex from '../views/Samples/Index.vue'
 import SamplesPage001 from '../views/Samples/Page001.vue'
@@ -100,6 +106,29 @@ const router = createRouter({
       component: ManagementsUsersEdit
     },
 
+    // managements - images
+    {
+      path: '/managements/images',
+      name: 'managements-images-index',
+      component: ManagementsImagesIndex
+    },
+    {
+      path: '/managements/images/new',
+      name: 'managements-images-new',
+      component: ManagementsImagesNew
+    },
+    {
+      path: '/managements/images/:id/detail',
+      name: 'managements-images-detail',
+      component: ManagementsImagesDetail
+    },
+    {
+      path: '/managements/images/:id/edit',
+      name: 'managements-images-edit',
+      component: ManagementsImagesEdit
+    },
+
+    // not found
     {
       path: '/:pathMatch(.*)*',
       name: 'not_found',

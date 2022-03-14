@@ -25,17 +25,15 @@ import { RouterLink } from "vue-router";
           </div>
         </div>
 
-<!--
         <div class="card">
           <div
             class="card-body"
-            @click="$router.push({ name: 'admin-images-index' })"
+            @click="$router.push({ name: 'managements-images-index' })"
           >
             <h5 class="card-title">画像管理</h5>
             <h6 class="card-subtitle mb-2 text-muted">Image</h6>
           </div>
         </div>
--->
       </div>
     </div>
 
