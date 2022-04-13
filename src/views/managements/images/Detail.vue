@@ -65,10 +65,51 @@ const deleteThis = () => {
     </section>
 
     <section class="container">
-      <div class="image">
-        <div class="image__id">画像ID: {{ image.id }}</div>
-        <div class="image__name">画像名: {{ image.fileName }}</div>
-        <div class="image__image">
+
+      <div class="row justify-content-center my-2 image">
+        <div class="col-3">
+          <label for="image__name__input">画像ID: </label>
+        </div>
+        <div class="col-3">
+          <input
+            class="image__name__input"
+            id="image__name__input"
+            type="text"
+            name="filename"
+            v-model="image.id"
+          />
+        </div>
+      </div>
+      <div class="row justify-content-center my-2 image">
+        <div class="col-3">
+          <label for="image__name__input">画像名: </label>
+        </div>
+        <div class="col-3">
+          <input
+            class="image__name__input"
+            id="image__name__input"
+            type="text"
+            name="filename"
+            v-model="image.fileName"
+          />
+        </div>
+      </div>
+      <div class="row justify-content-center my-2 image">
+        <div class="col-3">
+          <label for="image__mimetype__input">ファイル mimy タイプ: </label>
+        </div>
+        <div class="col-3">
+          <input
+            class="image__mimetype__input"
+            id="image__mimetype__input"
+            type="text"
+            name="fileMimetype"
+            v-model="image.fileMimetype"
+          />
+        </div>
+      </div>
+      <div class="row justify-content-center my-2 image">
+        <div class="col-6 image__image">
           <img
             class="image__image__image"
             id="image__image__image"
@@ -79,31 +120,33 @@ const deleteThis = () => {
     </section>
 
     <section class="container">
-      <div class="container">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          @click="router.push({ name: 'managements-images-index' })"
-        >
-          一覧へ戻る
-        </button>
-        &nbsp;
-        <button
-          type="button"
-          class="btn btn-primary"
-          @click="router.push({ name: 'managements-images-edit', params: { id: image.id } })"
-        >
-          編集
-        </button>
-        &nbsp;
-        <button
-          type="button"
-          class="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#confirmToDelete"
-        >
-          削除
-        </button>
+      <div class="row justify-content-center my-2">
+        <div class="col-6 border text-center p-2">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            @click="router.push({ name: 'managements-images-index' })"
+          >
+            一覧へ戻る
+          </button>
+          &nbsp;
+          <button
+            type="button"
+            class="btn btn-primary"
+            @click="router.push({ name: 'managements-images-edit', params: { id: image.id } })"
+          >
+            編集
+          </button>
+          &nbsp;
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-bs-toggle="modal"
+            data-bs-target="#confirmToDelete"
+          >
+            削除
+          </button>
+        </div>
       </div>
     </section>
 
@@ -170,8 +213,8 @@ const deleteThis = () => {
     justify-content: center;
 
     &__image {
-      width: auto;
-      height: auto;
+      width: fit-content;
+      height: fit-content;
       max-width: 350px;
       max-height: 350px;
     }
@@ -198,4 +241,5 @@ const deleteThis = () => {
 .drag-area input {
   margin: 0 auto;
 }
+
 </style>
