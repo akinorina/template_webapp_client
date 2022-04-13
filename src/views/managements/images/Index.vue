@@ -1,8 +1,6 @@
 <script setup>
-import { RouterLink } from "vue-router";
 import { computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { useUserStore } from "@/stores/UserStore";
 import { useImageStore } from "@/stores/ImageStore";
 
 // components
