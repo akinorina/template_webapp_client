@@ -80,8 +80,8 @@ const newUser = () => {
         <tbody>
           <tr v-for="item in userList" :key="item.id">
             <th scope="row">{{ item.id }}</th>
-            <td>{{ item.name }}</td>
-            <td class="d-none d-md-table-cell">{{ item.nameKana }}</td>
+            <td>{{ item.familyName }}{{ item.firstName }}</td>
+            <td class="d-none d-md-table-cell">{{ item.familyNameKana }}{{ item.firstNameKana }}</td>
             <td class="d-none d-sm-table-cell">{{ item.email }}</td>
             <td class="d-none d-md-table-cell">{{ item.userType }}</td>
             <td>

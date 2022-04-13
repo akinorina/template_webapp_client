@@ -24,8 +24,10 @@ const breadcrumbData = [
 let data = reactive({
   editUser: {
     id: 0,
-    name: '',
-    nameKana: '',
+    familyName: '',
+    firstName: '',
+    familyNameKana: '',
+    firstNameKana: '',
     email: '',
     password: '',
     userType: ''
@@ -52,15 +54,6 @@ const user = computed(() => {
 
 // method: submit
 const submit = () => {
-  // 送信用データ作成
-  // const sendUser = {
-  //   id: data.editUser.id,
-  //   name: data.editUser.name,
-  //   nameKana: data.editUser.nameKana,
-  //   email: data.editUser.email,
-  //   password: data.editUser.password,
-  //   userType: data.editUser.userType
-  // }
   // DB保存
   userStore.accessUpdateUser(data.editUser).then(() => {
     // 詳細ページへ遷移
@@ -96,11 +89,13 @@ const submit = () => {
         </div>
         <div class="row mb-3">
           <label for="inputName" class="col-5 col-form-label">氏名</label>
-          <div class="col-7"><input type="text" class="form-control" id="inputName" v-model="data.editUser.name" /></div>
+          <div class="col-3"><input type="text" class="form-control" id="inputFamilyName" v-model="data.editUser.familyName" /></div>
+          <div class="col-3"><input type="text" class="form-control" id="inputFirstName" v-model="data.editUser.firstName" /></div>
         </div>
         <div class="row mb-3">
           <label for="inputNamekana" class="col-5 col-form-label">氏名よみがな</label>
-          <div class="col-7"><input type="text" class="form-control" id="inputNamekana" v-model="data.editUser.nameKana" /></div>
+          <div class="col-3"><input type="text" class="form-control" id="inputFamilyNamekana" v-model="data.editUser.familyNameKana" /></div>
+          <div class="col-3"><input type="text" class="form-control" id="inputFirstNamekana" v-model="data.editUser.firstNameKana" /></div>
         </div>
         <div class="row mb-3">
           <label for="inputEmail" class="col-5 col-form-label">Email</label>

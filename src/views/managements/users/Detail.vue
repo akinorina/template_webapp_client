@@ -75,24 +75,40 @@ const deleteThis = () => {
         </div>
       </div>
       <div class="row mb-3">
-        <label for="inputName" class="col-5 col-form-label">氏名</label>
-        <div class="col-7">
+        <label for="inputFamilyName" class="col-5 col-form-label">氏名</label>
+        <div class="col-3">
           <input
             type="text"
             class="form-control-plaintext"
-            id="inputName"
-            v-model="user.name"
+            id="inputFamilyName"
+            v-model="user.familyName"
+          />
+        </div>
+        <div class="col-3">
+          <input
+            type="text"
+            class="form-control-plaintext"
+            id="inputFirstName"
+            v-model="user.firstName"
           />
         </div>
       </div>
       <div class="row mb-3">
-        <label for="inputNamekana" class="col-5 col-form-label">氏名よみがな</label>
-        <div class="col-7">
+        <label for="inputFamilyNamekana" class="col-5 col-form-label">氏名よみがな</label>
+        <div class="col-3">
           <input
             type="text"
             class="form-control-plaintext"
-            id="inputNamekana"
-            v-model="user.nameKana"
+            id="inputFamilyNamekana"
+            v-model="user.familyNameKana"
+          />
+        </div>
+        <div class="col-3">
+          <input
+            type="text"
+            class="form-control-plaintext"
+            id="inputFirstNamekana"
+            v-model="user.firstNameKana"
           />
         </div>
       </div>
