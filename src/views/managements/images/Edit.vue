@@ -78,29 +78,35 @@ const fileDragleave = (event) => {
   event.target.classList.remove('drag')
 }
 
+// 画像読込、表示
+const reader = new FileReader()
+reader.addEventListener('load', () => {
+  //
+  const contents = reader.result.match(/^data:(.*);base64,(.*)$/)
+  data.editImage.fileName = inputFiles.files[0].name
+  data.editImage.fileContent = contents[2]
+  data.editImage.fileMimetype = contents[1]
+  editElement.src = reader.result
+});
+
 // method:
 const fileDrop = (event) => {
   // 背景色リセット
   event.target.classList.remove('drag')
   event.target.classList.add('dropped')
-
   // drag したファイルを設定
   inputFiles.files = event.dataTransfer.files
-
-  // 画像読込、表示
-  const reader = new FileReader()
-  reader.addEventListener('load', () => {
-    editElement.src = reader.result
-    //
-    const contents = reader.result.match(/^data:(.*);base64,(.*)$/)
-    data.editImage.fileName = inputFiles.files[0].name
-    data.editImage.fileContent = contents[2]
-    data.editImage.fileMimetype = contents[1]
-  })
+  // ファイルURL読込
   reader.readAsDataURL(inputFiles.files[0])
 }
 
 // method:
+const changeFile = (event) => {
+  // ファイルURL読込
+  reader.readAsDataURL(inputFiles.files[0]);
+};
+
+// method: 保存
 const submit = (event) => {
   // 送信用データ作成
   const sendImage = {
@@ -109,6 +115,13 @@ const submit = (event) => {
     file_mimetype: data.editImage.fileMimetype,
     file_content: data.editImage.fileContent
   }
+  // console.log('sendImage', sendImage);
+
+  if (sendImage.file_content == undefined) {
+    alert('上書きする画像を指定してください。');
+    return;
+  }
+
   // DB保存
   imageStore.accessUpdateImage({ image: sendImage }).then(() => {
     // 詳細ページへ遷移

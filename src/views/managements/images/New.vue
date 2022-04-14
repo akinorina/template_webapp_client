@@ -28,11 +28,14 @@ let editElement = null;
 const data = reactive({
   editImage: {
     id: 0,
-    fileName: "",
-    fileMimetype: "",
-    fileContent: "",
-  },
-});
+    userId: '',
+    fileName: '',
+    fileMimetype: '',
+    fileContent: '',
+    filePath: '',
+    fileUrl: ''
+  }
+})
 
 // lifecycle hooks
 onMounted(() => {
@@ -65,7 +68,6 @@ const fileDragleave = (event) => {
   event.target.classList.remove("drag");
 };
 
-// 画像読込、表示
 // 画像読込、表示
 const reader = new FileReader();
 reader.addEventListener("load", () => {
@@ -102,6 +104,12 @@ const submit = (event) => {
     file_mimetype: data.editImage.fileMimetype,
     file_content: data.editImage.fileContent,
   };
+  console.log('sendImage', sendImage);
+
+  if (sendImage.file_content == '') {
+    alert('画像を指定してください。');
+    return;
+  }
 
   // DB保存
   imageStore.accessCreateImage({ image: sendImage }).then((res) => {
