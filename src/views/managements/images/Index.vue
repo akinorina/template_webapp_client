@@ -1,8 +1,6 @@
 <script setup>
-import { RouterLink } from "vue-router";
 import { computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { useUserStore } from "@/stores/UserStore";
 import { useImageStore } from "@/stores/ImageStore";
 
 // components
@@ -75,9 +73,9 @@ const newImage = () => {
         <thead>
           <tr>
             <th scope="col">ID</th>
-            <th scope="col"></th>
-            <th scope="col">UserID</th>
-            <th scope="col" class="d-none d-md-table-cell">ファイル名</th>
+            <th scope="col">画像</th>
+            <th scope="col" class="d-none d-lg-table-cell">UserID</th>
+            <th scope="col" class="">ファイル名</th>
             <th scope="col" class="d-none d-sm-table-cell">ファイル mimetype</th>
             <th scope="col" class="d-none d-md-table-cell">ファイル url</th>
             <th scope="col">操作</th>
@@ -86,12 +84,10 @@ const newImage = () => {
         <tbody>
           <tr v-for="item in imageList" :key="item.id">
             <th scope="row">{{ item.id }}</th>
-            <td class="d-none d-md-table-cell">
-              <img :src="item.fileUrl" style="max-height: 70px" />
-            </td>
-            <td>{{ item.userId }}</td>
+            <td><img :src="item.fileUrl" style="max-height: 70px" /></td>
+            <td class="d-none d-lg-table-cell">{{ item.userId }}</td>
             <td>{{ item.fileName }}</td>
-            <td class="d-none d-md-table-cell">{{ item.fileMimetype }}</td>
+            <td class="d-none d-sm-table-cell">{{ item.fileMimetype }}</td>
             <td class="d-none d-md-table-cell">{{ item.fileUrl }}</td>
             <td>
               <button

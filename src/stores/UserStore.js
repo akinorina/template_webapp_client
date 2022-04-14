@@ -13,7 +13,7 @@ export const useUserStore = defineStore({
     userList: () => { [] },
 
     // current user.
-    user: { id: 0, name: '', nameKana: '', email: '', password: '', userType: '' },
+    user: { id: 0, familyName: '', firstName: '', familyNameKana: '', firstNameKana: '', email: '', password: '', userType: '' },
     // current user id.
     userId: 0,
 
@@ -86,9 +86,11 @@ export const useUserStore = defineStore({
       // api access
       try {
         const response = await axiosC.get(url, config)
+        console.log('::: response:', response)
+
         // setUser
-        this.user = response.data.data[0]
-        this.userId = response.data.data[0].id
+        this.user = response.data.data
+        this.userId = response.data.data.id
       } catch (err) {
         if (err.response.status === 401) {
           // commit('loginFailure')
@@ -103,8 +105,10 @@ export const useUserStore = defineStore({
       // User登録データ生成
       const url = '/api/auth/regist'
       const userData = {
-        name: payload.name,
-        nameKana: payload.nameKana,
+        familyName: payload.familyName,
+        firstName: payload.firstName,
+        familyNameKana: payload.familyNameKana,
+        firstNameKana: payload.firstNameKana,
         email: payload.email,
         password: payload.password,
         userType: payload.userType
@@ -125,8 +129,10 @@ export const useUserStore = defineStore({
       //
       const url = '/api/users/'
       const userData = {
-        name: payload.name,
-        nameKana: payload.nameKana,
+        familyName: payload.familyName,
+        firstName: payload.firstName,
+        familyNameKana: payload.familyNameKana,
+        firstNameKana: payload.firstNameKana,
         email: payload.email,
         password: payload.password,
         userType: payload.userType
@@ -153,8 +159,10 @@ export const useUserStore = defineStore({
       //
       const url = '/api/users/' + payload.id
       const userData = {
-        name: payload.name,
-        nameKana: payload.nameKana,
+        familyName: payload.familyName,
+        firstName: payload.firstName,
+        familyNameKana: payload.familyNameKana,
+        firstNameKana: payload.firstNameKana,
         email: payload.email,
         password: payload.password,
         userType: payload.userType

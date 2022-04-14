@@ -48,8 +48,7 @@ export const useImageStore = defineStore({
         // clearImageList
         this.imageList = []
         this.pager.total = 0
-
-        console.warn(err.response)
+        // console.warn(err.response)
         if (err.response.status === 401) {
           // commit('loginFailure')
         } else {
@@ -88,11 +87,11 @@ export const useImageStore = defineStore({
       // api access
       try {
         const response = await axiosC.get(url, config)
-        console.log('response', response)
+        // console.log('response', response)
 
         // setImage
-        this.image = response.data.data[0]
-        this.imageId = response.data.data[0].id
+        this.image = response.data.data
+        this.imageId = response.data.data.id
       } catch (err) {
         console.error('err: ', err)
         if (err.response.status === 401) {
@@ -173,42 +172,3 @@ export const useImageStore = defineStore({
     }
   }
 })
-
-
-//   mutations: {
-//     // clear image list.
-//     clearImageList (state, payload) {
-//       state.imageList = []
-//       state.pager.total = 0
-//     },
-//     // image list.
-//     setImageList (state, payload) {
-//       state.imageList = payload.data
-//       state.pager.total = payload.total
-//     },
-//     // image list to prev
-//     setImageListPrev (state) {
-//       state.pager.start -= state.pager.limit
-//       if (state.pager.start < 0) {
-//         state.pager.start = 0
-//       }
-//     },
-//     // image list to next
-//     setImageListNext (state) {
-//       const newstart = state.pager.start + state.pager.limit
-//       if (newstart < state.pager.total) {
-//         state.pager.start = newstart
-//       }
-//     },
-
-//     // image.
-//     setImage (state, payload) {
-//       state.image = payload.data[0]
-//       state.imageId = payload.data[0].id
-//     },
-
-//     // imageId
-//     setImageId (state, payload) {
-//       state.imageId = payload.id
-//     }
-//   },

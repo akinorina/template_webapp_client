@@ -78,29 +78,35 @@ const fileDragleave = (event) => {
   event.target.classList.remove('drag')
 }
 
+// 画像読込、表示
+const reader = new FileReader()
+reader.addEventListener('load', () => {
+  //
+  const contents = reader.result.match(/^data:(.*);base64,(.*)$/)
+  data.editImage.fileName = inputFiles.files[0].name
+  data.editImage.fileContent = contents[2]
+  data.editImage.fileMimetype = contents[1]
+  editElement.src = reader.result
+});
+
 // method:
 const fileDrop = (event) => {
   // 背景色リセット
   event.target.classList.remove('drag')
   event.target.classList.add('dropped')
-
   // drag したファイルを設定
   inputFiles.files = event.dataTransfer.files
-
-  // 画像読込、表示
-  const reader = new FileReader()
-  reader.addEventListener('load', () => {
-    editElement.src = reader.result
-    //
-    const contents = reader.result.match(/^data:(.*);base64,(.*)$/)
-    data.editImage.fileName = inputFiles.files[0].name
-    data.editImage.fileContent = contents[2]
-    data.editImage.fileMimetype = contents[1]
-  })
+  // ファイルURL読込
   reader.readAsDataURL(inputFiles.files[0])
 }
 
 // method:
+const changeFile = (event) => {
+  // ファイルURL読込
+  reader.readAsDataURL(inputFiles.files[0]);
+};
+
+// method: 保存
 const submit = (event) => {
   // 送信用データ作成
   const sendImage = {
@@ -109,6 +115,13 @@ const submit = (event) => {
     file_mimetype: data.editImage.fileMimetype,
     file_content: data.editImage.fileContent
   }
+  // console.log('sendImage', sendImage);
+
+  if (sendImage.file_content == undefined) {
+    alert('上書きする画像を指定してください。');
+    return;
+  }
+
   // DB保存
   imageStore.accessUpdateImage({ image: sendImage }).then(() => {
     // 詳細ページへ遷移
@@ -126,7 +139,7 @@ const submit = (event) => {
     <section class="py-2 text-center container">
       <div class="row py-lg-5 border border-3 rounded">
         <div class="col-lg-6 col-md-8 mx-auto">
-          <h1 class="fw-light">template_webapp_client</h1>
+          <h1 class="fw-light">template_webapp</h1>
           <p class="lead text-muted">管理画面</p>
         </div>
       </div>
@@ -138,46 +151,105 @@ const submit = (event) => {
 
     <form @submit.prevent="submit">
       <section class="container">
-        <div class="image">
-          <div class="image__id">
-            <label for="image__id__input">画像ID: </label>
-            <input class="image__id__input" id="image__id__input" type="text" name="id" v-model="data.editImage.id" readonly />
+
+        <div class="row justify-content-center my-2 image">
+          <div class="col-3">
+            <label for="image__name__input">画像ID: </label>
           </div>
-          <div class="image__name">
+          <div class="col-3">
+            <input
+              class="image__name__input"
+              id="image__name__input"
+              type="text"
+              name="filename"
+              v-model="data.editImage.id"
+            />
+          </div>
+        </div>
+        <div class="row justify-content-center my-2 image">
+          <div class="col-3">
             <label for="image__name__input">画像名: </label>
-            <input class="image__name__input" id="image__name__input" type="text" name="fileName" v-model="data.editImage.fileName" />
           </div>
-          <div class="image__mimetype">
+          <div class="col-3">
+            <input
+              class="image__name__input"
+              id="image__name__input"
+              type="text"
+              name="filename"
+              v-model="data.editImage.fileName"
+            />
+          </div>
+        </div>
+        <div class="row justify-content-center my-2 image">
+          <div class="col-3">
             <label for="image__mimetype__input">ファイル mimy タイプ: </label>
-            <input class="image__mimetype__input" id="image__mimetype__input" type="text" name="fileMimetype" v-model="data.editImage.fileMimetype" />
           </div>
-          <div class="image__fileContent">
+          <div class="col-3">
+            <input
+              class="image__mimetype__input"
+              id="image__mimetype__input"
+              type="text"
+              name="fileMimetype"
+              v-model="data.editImage.fileMimetype"
+            />
+          </div>
+        </div>
+        <div class="d-none row justify-content-center my-2 image">
+          <div class="col-3">
             <label for="image__fileContent__input">ファイル データ (base64): </label>
-            <input class="image__fileContent__input" id="image__fileContent__input" type="text" name="name" v-model="data.editImage.fileContent" />
           </div>
-
-          <div class="image__image">
-            <img class="image__image__image" id="image__image__image" :src="data.editImage.fileUrl" />
+          <div class="col-3">
+            <input
+              class="image__fileContent__input"
+              id="image__fileContent__input"
+              type="text"
+              name="name"
+              v-model="data.editImage.fileContent"
+            />
           </div>
-
-          <div class="drag-area image__upload" id="uploadArea" @dragover.prevent="fileDragover" @dragleave.prevent="fileDragleave" @drop.prevent="fileDrop">
-            ここに画像ファイルをドロップ！
+        </div>
+        <div class="row justify-content-center my-2 image">
+          <div class="col-6 image__image">
+            <img
+              class="image__image__image"
+              id="image__image__image"
+              :src="data.editImage.fileUrl"
+            />
           </div>
-          <input type="file" id="images" name="images" accept="image/png, image/jpeg" style="visibility: hidden" />
+        </div>
+        <div class="row justify-content-center my-2 image">
+          <div
+            class="col-6 image__upload drag-area"
+            id="uploadArea"
+            @dragover.prevent="fileDragover"
+            @dragleave.prevent="fileDragleave"
+            @drop.prevent="fileDrop"
+          >
+            <input
+              type="file"
+              id="images"
+              name="images"
+              accept="image/png, image/jpeg"
+              style="width: 310px;"
+              @change="changeFile"
+            />
+          </div>
         </div>
       </section>
 
       <section class="container">
-        <div class="container">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            @click="router.push({ name: 'managements-images-detail', params: { id: image.id } })"
-          >
-            戻る
-          </button>
-          &nbsp;
-          <button type="submit" class="btn btn-primary">保存</button>
+        <div class="row justify-content-center my-2">
+          <div class="col-6 border text-center p-2">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              @click="router.push({ name: 'managements-images-detail', params: { id: image.id } })"
+            >
+              戻る
+            </button>
+            &nbsp;
+            <button type="submit" class="btn btn-primary">保存</button>
+          </div>
         </div>
       </section>
     </form>
@@ -187,7 +259,6 @@ const submit = (event) => {
 
 <style lang="scss" scoped>
 
-//
 .image {
   margin: 0 auto;
   border: 0px blue solid;
@@ -211,8 +282,8 @@ const submit = (event) => {
     justify-content: center;
 
     &__image {
-      width: auto;
-      height: auto;
+      width: fit-content;
+      height: fit-content;
       max-width: 350px;
       max-height: 350px;
     }

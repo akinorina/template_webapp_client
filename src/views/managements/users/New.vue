@@ -22,8 +22,10 @@ const breadcrumbData = [
 // data
 const data = reactive({
   newUser: {
-    name: '',
-    nameKana: '',
+    familyName: '',
+    firstName: '',
+    familyNameKana: '',
+    firstNameKana: '',
     email: '',
     password: '',
     userType: ''
@@ -60,16 +62,22 @@ const submit = () => {
       <form @submit.prevent="submit">
         <div class="row mb-3">
           <label for="inputName" class="col-5 col-form-label">氏名</label>
-          <div class="col-5">
-            <input type="text" class="form-control" id="inputName" v-model="data.newUser.name" />
+          <div class="col-3">
+            <input type="text" class="form-control" id="inputFamilyName" placeholder="姓" v-model="data.newUser.familyName" />
+          </div>
+          <div class="col-3">
+            <input type="text" class="form-control" id="inputFirstName" placeholder="名" v-model="data.newUser.firstName" />
           </div>
         </div>
 
         <div class="row mb-3">
-          <label for="inputNamekana" class="col-5 col-form-label"
-            >氏名よみがな</label
-          >
-          <div class="col-5"> <input type="text" class="form-control" id="inputNamekana" v-model="data.newUser.nameKana" /></div>
+          <label for="inputNamekana" class="col-5 col-form-label">氏名よみがな</label>
+          <div class="col-3">
+            <input type="text" class="form-control" id="inputFamilyNamekana" placeholder="姓（かな）" v-model="data.newUser.familyNameKana" />
+          </div>
+          <div class="col-3">
+            <input type="text" class="form-control" id="inputFirstNamekana" placeholder="名（かな）" v-model="data.newUser.firstNameKana" />
+          </div>
         </div>
 
         <div class="row mb-3">
